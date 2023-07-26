@@ -1,0 +1,11 @@
+<%- include('partials/head') %>
+<body>
+   <form method="post" action="/admin/upload" enctype="multipart/form-data">
+      <label for="catagoryID">create catagory</label><br>
+      <input type="text" name="catagory" id="catagoryID"><br>
+      <label for="imageID">select images</label><br>
+      <input type="file" name="photos" accept="*.jpg,jpeg" multiple><br><br>
+      <button class="bg-purple-700 px-4 py-2 text-white" type="submit">upload</button>
+   </form>
+</body>
+<%- include('partials/foot') %>

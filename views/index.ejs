@@ -1,0 +1,74 @@
+<%- include('partials/head') %>
+
+  <body>
+    <header>
+      <nav
+        class="container fixed shadow-sm backdrop-filter backdrop-blur-md bg-opacity-50 z-50 flex flex-wrap items-center justify-between mx-auto w-full py-4 md:py-0 px-4 text-lg bg-white">
+        <div>
+          <a href="#">
+            <h1
+              class="md:p-4 py-2 text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
+              GraphiPass
+            </h1>
+          </a>
+        </div>
+        <!-- Hamburger Icon -->
+        <svg xmlns="<http://www.w3.org/2000/svg>" id="menu-button" class="h-6 w-6 cursor-pointer md:hidden block"
+          fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <div class="hidden w-full md:flex md:items-center md:w-auto " id="menu">
+          <ul class="text-base text-gray-700 pt-4 md:flex md:justify-between md:pt-0">
+            <li>
+              <a class="md:p-4 py-2 block text-gray-700 hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r hover:from-pink-500 hover:to-violet-500 hover:font-medium"
+                href="#">Home</a>
+            </li>
+            <li>
+              <a class="md:p-4 py-2 block text-gray-700 hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r hover:from-pink-500 hover:to-violet-500 hover:font-medium"
+                href="#">About</a>
+            </li>
+            <li>
+              <a class="md:p-4 py-2 block text-gray-700 hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r hover:from-pink-500 hover:to-violet-500 hover:font-medium"
+                href="#">Projects</a>
+            </li>
+            <li>
+              <a class="md:p-4 py-2 block text-gray-700 hover:bg-clip-text hover:text-transparent hover:bg-gradient-to-r hover:from-pink-500 hover:to-violet-500 hover:font-medium"
+                href="#">Contect</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <hr>
+    </header><br><br>
+
+
+    <section class="container mx-auto my-8 px-4 sm:px-6 lg:px-8 lg:flex lg:justify-between">
+      <div class="lg:w-1/2 order-last">
+        <img src="/images/security.jpg" alt="" class="w-full h-auto">
+      </div>
+      <div class="flex items-center lg:w-1/2 lg:pr-4">
+        <div class="mx-auto">
+          <h2
+            class="drop-shadow-lg text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 mb-4">
+            Graphical Password Authentication</h2>
+          <p class="text-sm leading-normal mb-4">"Securely authenticate with ease using graphical passwords! Our website
+            provides a user-friendly alternative to traditional alphanumeric passwords. Select your favorite images and
+            create a memorable pattern to keep your accounts safe and secure. Try it now!"</p>
+          <button class="bg-purple-700 text-white px-4 py-2 rounded-md text-sm font-medium"><a href="/user"> Try It
+              Now</a></button>
+        </div>
+      </div>
+
+    </section>
+
+
+    <script>
+      const button = document.querySelector('#menu-button'); // Hamburger Icon
+      const menu = document.querySelector('#menu'); // Menu
+
+      button.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+      });
+    </script>
+  </body>
+  <%- include('partials/foot') %>

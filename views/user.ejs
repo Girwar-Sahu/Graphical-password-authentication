@@ -1,0 +1,46 @@
+<%- include('partials/head') %>
+
+  <body class="bg-gray-100 my-0">
+    <div class="container rounded-xl drop-shadow-lg mt-10 p-5 max-w-md flex items-center mx-auto bg-white">
+      <div class="mx-auto">
+        <h1 class="text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
+          Register</h1>
+        <hr class="border-gray-300"><br>
+        <div class="mb-3">
+          <label class="font-light text-sm" for="emailID">Enter Email</label><br>
+          <input name="email" type="text" class="bg-gray-50 form-input px-5" id="emailID" placeholder="Email">
+        </div>
+        <div class="mb-3">
+          <label class="font-light text-sm" for="nameID">Enter Name</label><br>
+          <input name="name" type="text" class="bg-gray-50 form-input px-5" id="nameID" placeholder="Name">
+        </div>
+        <div class="mb-3">
+          <label class="font-light text-sm" for="numberID">Enter Phone Number</label><br>
+          <input name="number" type="text" class="bg-gray-50 form-input px-5" id="numberID" placeholder="Number">
+        </div>
+        <div class="mb-3">
+          <label class="font-light text-sm" for="catagoryID">Choose Password Catagory</label><br>
+          <select id="select-catagory" name="catagory" class="bg-gray-50 form-input px-5">
+            <option class="font-light" value="" selected disabled>select catagory</option>
+            <% data.forEach((item)=>{ %>
+              <option value="<%= item %>"><%= item %></option>
+            <% }); %>
+          </select>
+        </div><br>
+          <div class="mb-3">
+            <div id="image-container" class="p-3 bg-gray-100 grid grid-cols-5 gap-4">
+              <!-- fetch form js -->
+              <!-- repeat for as many images as you want to include -->
+            </div>
+
+          </div>
+          <div class="mb-3">
+            <button id="submit" class="rounded-lg px-4 py-1 bg-purple-700 text-white">Sign Up</button>
+            <a href="/user/login"><button class="rounded-lg px-4 py-1 bg-purple-700 text-white">Log in</button></a>
+          </div>
+      </div>
+    </div>
+
+  </body>
+
+  <%- include('partials/foot') %>
