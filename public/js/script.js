@@ -4,33 +4,41 @@ const catagory = document.getElementById('select-catagory');
 const checkedValue = [];
 const container = document.getElementById('image-container')
 
+container.style.display = "none"
 
 function selectImg() {
   const chiled = container.querySelectorAll('.relative')
-  var count = 1;
+  var count = 0;
   chiled.forEach(item => {
     var checkbox = item.querySelector('input[type="checkbox"]');
     // checkbox.classList.add('absolute','top-0','left-0','w-full','h-full','opacity-0', 'cursor-pointer')
     var image = item.querySelector('img');
+    var badge = item.querySelector('div');
     // image.classList.add('h-200','w-200')
     var goCheck = true;
 
-    item.addEventListener('click', () => {
+    image.addEventListener('click', () => {
 
-      if (checkbox.checked && goCheck) {
+      if (!checkbox.checked && goCheck) {
         // image.style.display = 'none';
-        image.insertAdjacentHTML('afterend', `<h1 style="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">${count}</h1>`);
         count += 1;
+        // image.insertAdjacentHTML('afterend', `<div class="badge">${count}</div>`);
+        badge.innerHTML = count;
+        badge.style.display = 'block'
         image.classList.add('opacity-50')
+        // checkbox.value = count;
         checkbox.checked = goCheck;
         checkedValue.push(checkbox.value)
         // console.log('checked');
         goCheck = false;
         // console.log(checkedValue);
       }
-      else if (!checkbox.checked && !goCheck && checkbox.value === checkedValue[checkedValue.length - 1]) {
+      else if (checkbox.checked && !goCheck && checkbox.value === checkedValue[checkedValue.length - 1]) {
+        // const chiled = container.querySelectorAll('.relative')
+        // const badge = chiled.querySelectorAll('.badge')
+        badge.style.display = 'none';
         image.style.display = 'block';
-        image.nextElementSibling.remove();
+        // image.nextElementSibling.remove();
         count -= 1;
         image.classList.remove('opacity-50')
         checkbox.checked = goCheck;
@@ -44,7 +52,7 @@ function selectImg() {
 }
 
 const fetchImage = async () => {
-
+  container.style.display = "grid"
   const value = catagory.value;
   const response = await fetch(`/user/list/${value}`)
 
@@ -58,8 +66,9 @@ const fetchImage = async () => {
     images.forEach((image) => {
       container.innerHTML += `<div class="relative">
                               <input type="checkbox" value="${image.imgCode}"
-                              class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer">
+                              class="absolute hidden top-0 left-0 w-full h-full opacity-0 cursor-pointer">
                               <img src="/uploads/${image.fileName}" alt="" class="h-100 w-100">
+                              <div class="badge"></div>
                               </div>`
     })
     selectImg()
@@ -73,6 +82,7 @@ const fetchImage = async () => {
 
 if (catagory) {
   catagory.addEventListener('change', fetchImage);
+  // container.style.display = "block"
 }
 
 const submit = document.getElementById('submit')
@@ -103,6 +113,7 @@ if(submit){
 }
 
 function selectImgL() {
+  container.style.display = 'grid'
   const chiled = container.querySelectorAll('.relative')
   var count = 1;
   chiled.forEach(item => {
@@ -155,14 +166,14 @@ function login() {
       .then(async (result) => {
         if (result.notExist) {
           container.innerHTML = ''
-          message.innerHTML = '<h1>User not found</h1>'
+          message.innerHTML = `<h1 class="text-red-500 text-sm">User not found</h1>`
         }
         else {
           const images = await result
           message.innerHTML = ''
           container.innerHTML = ''
           images.forEach((image) => {
-            message.innerHTML = '<h1>Select password :</h1>'
+            message.innerHTML = `<h1 class="font-light text-sm">Select password :</h1>`
             container.innerHTML += `<div class="relative">
                               <input type="checkbox" value="${image.imgCode}"
                               class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer">
@@ -195,7 +206,7 @@ function login() {
         // console.log(result.msg)
         // console.log(result.name)
         if (result.msg) {
-          message.innerHTML = "<h1>wrong password please try again</h1>"
+          message.innerHTML = `<h1 class="text-red-500 text-sm" >wrong password please try again</h1>`
         }
         else {
           window.location.href = `/user/login/welcome/${result.name}`
